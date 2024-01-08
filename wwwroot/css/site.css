@@ -1,0 +1,73 @@
+/* Bestaande CSS-code */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+/* Aanvullende stijlen voor jouw HTML-bestand */
+body {
+    font-family: Arial, sans-serif; /* Vervang door gewenst lettertype */
+    background-color: lightcyan; /* Achtergrondkleur voor de pagina */
+}
+
+header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #333;
+    font-size: 24px;
+}
+
+.navbar-nav .nav-item {
+    margin-right: 15px;
+}
+
+.navbar-nav .nav-link {
+    color: #333;
+    font-weight: lightcyan;
+}
+
+footer {
+    background-color: #ffffff;
+    padding: 10px 0;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer a {
+    color: #666;
+}
+
+.container {
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
