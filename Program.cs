@@ -1,5 +1,8 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using GroupSpace23.Data;
 using Microsoft.AspNetCore.Identity;
 using GroupSpace23.Areas.Identity.Data;
@@ -7,6 +10,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using GroupSpace23.Services;
 using NETCore.MailKit.Infrastructure.Internal;
 using Microsoft.AspNetCore.Mvc.Razor;
+using System;
 
 namespace GroupSpace23
 {
@@ -25,9 +29,7 @@ namespace GroupSpace23
                .AddEntityFrameworkStores<MyDbContext>();
 
             builder.Services.AddTransient<IEmailSender, MailKitEmailSender>();
- 
-            // De volgende configuratie van de MailKit wordt toegevoegd als demonstratie, maar gebruiken we niet.
-            // Deze is "overschreven" door het gebruik van de database-parameters in Globals, en ge�nitialiseerd in de data Initializer
+
             builder.Services.Configure<MailKitOptions>(options =>
             {
                 options.Server = builder.Configuration["ExternalProviders:MailKit:SMTP:Address"];
@@ -39,18 +41,13 @@ namespace GroupSpace23
                 options.Security = true;  // true zet ssl or tls aan
             });
 
-            // Add services for globalization/localization
             builder.Services.AddLocalization(options => options.ResourcesPath = "Translations");
             builder.Services.AddMvc()
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
 
-            // Add services to the container.
-            builder.Services.AddControllersWithViews();
-
             builder.Services.Configure<IdentityOptions>(options =>
             {
-                // Password settings.
                 options.Password.RequireDigit = true;
                 options.Password.RequireLowercase = true;
                 options.Password.RequireNonAlphanumeric = true;
@@ -58,22 +55,18 @@ namespace GroupSpace23
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 1;
 
-                // Lockout settings.
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.AllowedForNewUsers = true;
 
-                // User settings.
                 options.User.AllowedUserNameCharacters =
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = false;
             });
 
-
             var app = builder.Build();
-            Globals.App = app;          // Zorg ervoor dat we altijd een instantie van de huidige app bijhouden
+            Globals.App = app;
 
-            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
@@ -84,6 +77,21 @@ namespace GroupSpace23
             app.UseAuthentication();
             app.UseAuthorization();
 
+            // Cookie Middleware
+            app.Use(async (context, next) =>
+            {
+                if (!context.Request.Cookies.ContainsKey("SelectedLanguage"))
+                {
+                    var selectedLanguage = context.Request.Query["culture"];
+                    if (!string.IsNullOrWhiteSpace(selectedLanguage))
+                    {
+                        context.Response.Cookies.Append("SelectedLanguage", selectedLanguage,
+                            new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) });
+                    }
+                }
+                await next.Invoke();
+            });
+
             using (var scope = app.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
@@ -92,7 +100,7 @@ namespace GroupSpace23
                 await MyDbContext.DataInitializer(context, userManager);
             }
 
-            var supportedCultures = new[] {"en-US", "fr", "nl" };
+            var supportedCultures = new[] { "en-US", "fr", "nl" };
             var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
                 .AddSupportedCultures(supportedCultures)
                 .AddSupportedUICultures(supportedCultures);

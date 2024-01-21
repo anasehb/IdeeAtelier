@@ -164,6 +164,10 @@ public class MyDbContext : IdentityDbContext<GroupSpace23User>
 
     public DbSet<GroupSpace23.Models.Language> Languages { get; set; } = default!;
 
+
+    public DbSet<GroupSpace23.Models.Leverancier> Leverancier { get; set; } = default!;
+    
+
 }
 
 

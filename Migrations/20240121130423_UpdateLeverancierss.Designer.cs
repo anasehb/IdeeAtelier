@@ -4,6 +4,7 @@ using GroupSpace23.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroupSpace23.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class GroupSpace23ContextModelSnapshot : ModelSnapshot
+    [Migration("20240121130423_UpdateLeverancierss")]
+    partial class UpdateLeverancierss
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -192,7 +195,7 @@ namespace GroupSpace23.Migrations
                     b.ToTable("Languages");
                 });
 
-            modelBuilder.Entity("GroupSpace23.Models.Leverancier", b =>
+            modelBuilder.Entity("GroupSpace23.Models.Leveranciers", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -210,7 +213,7 @@ namespace GroupSpace23.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Leverancier");
+                    b.ToTable("Leveranciers");
                 });
 
             modelBuilder.Entity("GroupSpace23.Models.Message", b =>

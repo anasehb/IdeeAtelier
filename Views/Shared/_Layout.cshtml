@@ -3,7 +3,6 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer _localizer
 
-
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -27,19 +26,25 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@_localizer["Start"]</a>
                         </li>
+
+                        <!-- Dropdown voor de "Manage" sectie -->
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Groups" asp-action="Index">@_localizer["Merk"]</a>
-                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="manageDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    @_localizer["Manage"]
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="manageDropdown">
+                                    <a class="dropdown-item text-dark" asp-controller="Groups" asp-action="Index">@_localizer["Projecten"]</a>
+                                    <a class="dropdown-item text-dark" asp-controller="LeveranciersController" asp-action="Index">@_localizer["Leveranciersbheer"]</a>
 
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Messages" asp-action="Index">@_localizer["Berichten"]</a>
-                            </li>
-                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Abonnementen" asp-action="Index">@_localizer["Premium"]</a>
+
+                                    <!-- Voeg hier andere links toe voor je beheerpagina's -->
+                                </div>
                             </li>
                         }
+                        <!-- Einde dropdown voor de "Manage" sectie -->
+
                         @if (User.IsInRole("SystemAdministrator"))
                         {
                             <li class="nav-item dropdown">
@@ -67,7 +72,12 @@
                         }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link text-dark" asp-area="" asp-controller="Abonnementen" asp-action="Index">@_localizer["Abonnementen"]</a>
+                        </li>
+                       
                     </ul>
                     <partial name="_LoginPartial" />
                     <partial name="_LanguagePartial"/>
@@ -81,14 +91,14 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - IdeeAtelier - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+   <footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; 2023 - IdeeAtelier - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+</footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
