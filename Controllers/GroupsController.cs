@@ -25,20 +25,20 @@ namespace GroupSpace23.Controllers
         // GET: Groups
         public async Task<IActionResult> Index()
         {
-              return _context.Groups != null ? 
-                          View(await _context.Groups.Where(g=>g.Ended > DateTime.Now).ToListAsync()) :
+              return _context.Projecten != null ? 
+                          View(await _context.Projecten.Where(g=>g.Ended > DateTime.Now).ToListAsync()) :
                           Problem("Entity set 'GroupSpace23Context.Group'  is null.");
         }
 
         // GET: Groups/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Groups == null)
+            if (id == null || _context.Projecten == null)
             {
                 return NotFound();
             }
 
-            var @group = await _context.Groups
+            var @group = await _context.Projecten
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (@group == null)
             {
@@ -51,7 +51,7 @@ namespace GroupSpace23.Controllers
         // GET: Groups/Create
         public IActionResult Create()
         {
-            return View(new Group());
+            return View(new Project());
         }
 
         // POST: Groups/Create
@@ -59,7 +59,7 @@ namespace GroupSpace23.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Started,Ended,StartedById")] Group @group)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Started,Ended,StartedById")] Project @group)
         {
             if (ModelState.IsValid)
             {
@@ -74,12 +74,12 @@ namespace GroupSpace23.Controllers
         // GET: Groups/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Groups == null)
+            if (id == null || _context.Projecten == null)
             {
                 return NotFound();
             }
 
-            var @group = await _context.Groups.FindAsync(id);
+            var @group = await _context.Projecten.FindAsync(id);
             if (@group == null)
             {
                 return NotFound();
@@ -92,7 +92,7 @@ namespace GroupSpace23.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Started,Ended,StartedById")] Group @group)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Started,Ended,StartedById")] Project @group)
         {
             if (id != @group.Id)
             {
@@ -125,12 +125,12 @@ namespace GroupSpace23.Controllers
         // GET: Groups/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Groups == null)
+            if (id == null || _context.Projecten == null)
             {
                 return NotFound();
             }
 
-            var @group = await _context.Groups
+            var @group = await _context.Projecten
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (@group == null)
             {
@@ -145,15 +145,15 @@ namespace GroupSpace23.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Groups == null)
+            if (_context.Projecten == null)
             {
                 return Problem("Entity set 'GroupSpace23Context.Group'  is null.");
             }
-            var @group = await _context.Groups.FindAsync(id);
+            var @group = await _context.Projecten.FindAsync(id);
             if (@group != null)
             {
                 group.Ended = DateTime.Now;
-                _context.Groups.Update(@group);
+                _context.Projecten.Update(@group);
             }
             
             await _context.SaveChangesAsync();
@@ -162,7 +162,7 @@ namespace GroupSpace23.Controllers
 
         private bool GroupExists(int id)
         {
-          return (_context.Groups?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Projecten?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

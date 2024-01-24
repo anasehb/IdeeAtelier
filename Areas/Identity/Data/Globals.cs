@@ -18,7 +18,7 @@ namespace GroupSpace23
 
         static public void ConfigureMail()
         {
-            MailKitEmailSender mailSender = (MailKitEmailSender) App.Services.GetService<IEmailSender>();
+             MailKitEmailSender mailSender = (MailKitEmailSender) App.Services.GetService<IEmailSender>();
             var options = mailSender.Options;
             options.Server = Parameters["Mail.Server"].Value;
             options.Server = Parameters["Mail.Server"].Value;

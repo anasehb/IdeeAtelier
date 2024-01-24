@@ -75,7 +75,7 @@ namespace GroupSpace23.Controllers
         // GET: Messages/Create
         public IActionResult Create()
         {
-            ViewData["RecipientId"] = new SelectList(_context.Groups
+            ViewData["RecipientId"] = new SelectList(_context.Projecten
                                         .Where(g => g.Ended > DateTime.Now)
                                         .OrderBy(g => g.Name), "Id", "Name");
 //            ViewBag.RecipientId = new SelectList(_context.Groups.Where(g => g.Ended > DateTime.Now).OrderBy(g => g.Name), "Id", "Name");
@@ -98,7 +98,7 @@ namespace GroupSpace23.Controllers
                  await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RecipientId"] = new SelectList(_context.Groups
+            ViewData["RecipientId"] = new SelectList(_context.Projecten
                                         .Where(g => g.Ended > DateTime.Now)
                                         .OrderBy(g => g.Name), "Id", "Name", message.RecipientId);
             return View(message);
@@ -117,7 +117,7 @@ namespace GroupSpace23.Controllers
             {
                 return NotFound();
             }
-            ViewData["RecipientId"] = new SelectList(_context.Groups.Where(g=>g.Ended>DateTime.Now).OrderBy(g=>g.Name), "Id", "Name", message.RecipientId);
+            ViewData["RecipientId"] = new SelectList(_context.Projecten.Where(g=>g.Ended>DateTime.Now).OrderBy(g=>g.Name), "Id", "Name", message.RecipientId);
             return View(message);
         }
 
@@ -153,7 +153,7 @@ namespace GroupSpace23.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RecipientId"] = new SelectList(_context.Groups.Where(g => g.Ended > DateTime.Now).OrderBy(g => g.Name), "Id", "Name", message.RecipientId);
+            ViewData["RecipientId"] = new SelectList(_context.Projecten.Where(g => g.Ended > DateTime.Now).OrderBy(g => g.Name), "Id", "Name", message.RecipientId);
             return View(message);
         }
 

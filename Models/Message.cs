@@ -34,7 +34,7 @@ namespace GroupSpace23.Models
         [Display(Name = "Ontvanger")]
         public int RecipientId { get; set; }
         [Display(Name = "Ontvanger")]
-        public Group? Recipient { get; set; }
+        public Project? Recipient { get; set; }
 
     }
 

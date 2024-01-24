@@ -9,28 +9,29 @@ using GroupSpace23.Data;
 using GroupSpace23.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Localization;
 
 namespace GroupSpace23.Controllers
 {
-    [Authorize (Roles = "SystemAdministrator")]
+    [Authorize(Roles = "SystemAdministrator")]
     public class LanguagesController : Controller
     {
         private readonly MyDbContext _context;
+        private readonly IStringLocalizer<LanguagesController> _localizer;
 
-        public LanguagesController(MyDbContext context)
+        public LanguagesController(MyDbContext context, IStringLocalizer<LanguagesController> localizer)
         {
             _context = context;
+            _localizer = localizer;
         }
-
 
         // GET: Languages
         public async Task<IActionResult> Index()
         {
-              return _context.Languages != null ? 
-                          View(await _context.Languages.ToListAsync()) :
-                          Problem("Entity set 'MyDbContext.Language'  is null.");
+            return _context.Languages != null ?
+                View(await _context.Languages.ToListAsync()) :
+                Problem(_localizer["Entity set 'MyDbContext.Language' is null."]);
         }
-
 
         // GET: Languages/Create
         public IActionResult Create()
@@ -106,12 +107,10 @@ namespace GroupSpace23.Controllers
         }
 
         // GET: Languages/Delete/5
- 
         private bool LanguageExists(string id)
         {
-          return (_context.Languages?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Languages?.Any(e => e.Id == id)).GetValueOrDefault();
         }
-
 
         [AllowAnonymous]
         public IActionResult ChangeLanguage(string id, string returnUrl)
@@ -130,8 +129,7 @@ namespace GroupSpace23.Controllers
                 CookieRequestCultureProvider.DefaultCookieName,
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
                 new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
-                );
-
+            );
 
             return LocalRedirect(returnUrl);
         }

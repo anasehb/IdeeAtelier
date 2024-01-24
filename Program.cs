@@ -11,9 +11,10 @@ using GroupSpace23.Services;
 using NETCore.MailKit.Infrastructure.Internal;
 using Microsoft.AspNetCore.Mvc.Razor;
 using System;
+using Microsoft.OpenApi.Models;
 
 namespace GroupSpace23
-{
+{   
     public class Program
     {
         public static async Task Main(string[] args)
@@ -45,6 +46,14 @@ namespace GroupSpace23
             builder.Services.AddMvc()
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
+            // Add services for RESTFull API
+            builder.Services.AddControllers();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1",
+                                new OpenApiInfo { Title = "GroupSpace2023", Version = "v1" });
+            });
+
 
             builder.Services.Configure<IdentityOptions>(options =>
             {
@@ -71,11 +80,18 @@ namespace GroupSpace23
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            else // Gebruik van RESTFull API tijdens ontwikkeling
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GroupSpace2023 v1"));
+            }
             app.UseStaticFiles();
 
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+
 
             // Cookie Middleware
             app.Use(async (context, next) =>
@@ -100,7 +116,7 @@ namespace GroupSpace23
                 await MyDbContext.DataInitializer(context, userManager);
             }
 
-            var supportedCultures = new[] { "en-US", "fr", "nl" };
+            var supportedCultures = new[] { "en", "fr", "nl" };
             var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
                 .AddSupportedCultures(supportedCultures)
                 .AddSupportedUICultures(supportedCultures);
@@ -110,6 +126,8 @@ namespace GroupSpace23
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
+
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
             app.Run();
         }

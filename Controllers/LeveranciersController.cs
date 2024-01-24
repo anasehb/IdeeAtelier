@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GroupSpace23.Data;
 using GroupSpace23.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GroupSpace23.Controllers
 {
+
     public class LeveranciersController : Controller
     {
         private readonly MyDbContext _context;
@@ -68,6 +70,7 @@ namespace GroupSpace23.Controllers
         }
 
         // GET: Leveranciers/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Leverancier == null)
@@ -86,6 +89,7 @@ namespace GroupSpace23.Controllers
         // POST: Leveranciers/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description")] Leverancier leverancier)
@@ -119,6 +123,7 @@ namespace GroupSpace23.Controllers
         }
 
         // GET: Leveranciers/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Leverancier == null)
@@ -137,6 +142,7 @@ namespace GroupSpace23.Controllers
         }
 
         // POST: Leveranciers/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

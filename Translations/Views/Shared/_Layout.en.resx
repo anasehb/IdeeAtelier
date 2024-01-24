@@ -129,6 +129,9 @@
   <data name="Groepen" xml:space="preserve">
     <value>Groups</value>
   </data>
+  <data name="Leveranciersbeheer" xml:space="preserve">
+    <value>Supplier management</value>
+  </data>
   <data name="Parameters" xml:space="preserve">
     <value>Parameters</value>
   </data>

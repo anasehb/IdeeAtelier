@@ -117,31 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Boodschappen" xml:space="preserve">
-    <value>Messages</value>
+  <data name="text1" xml:space="preserve">
+    <value>"Découvrez la magie de vos idées de marque chez IdeeAtelier.</value>
   </data>
-  <data name="Gebruikers" xml:space="preserve">
-    <value>Utilisateurs</value>
+  <data name="text2" xml:space="preserve">
+    <value>Envoyez-nous votre vision et laissez-nous vous guider pour la Envoyez-nous votre vision et laissez-nous vous guider pour la façonner</value>
   </data>
-  <data name="Gebruikersbeheer" xml:space="preserve">
-    <value>Gestion des utilisateurs</value>
+  <data name="text3" xml:space="preserve">
+    <value>Ensemble, nous créons l'avenir de votre marque</value>
   </data>
-  <data name="Groepen" xml:space="preserve">
-    <value>Groupes</value>
+  <data name="text4" xml:space="preserve">
+    <value>Nous trouvons les bons fournisseurs pour vous. "</value>
   </data>
-  <data name="Leveranciersbeheer" xml:space="preserve">
-    <value>Gestion des fournisseurs</value>
-  </data>
-  <data name="Parameters" xml:space="preserve">
-    <value>Paramètres</value>
-  </data>
-  <data name="Start" xml:space="preserve">
-    <value>Départ</value>
-  </data>
-  <data name="Systeem" xml:space="preserve">
-    <value>Système</value>
-  </data>
-  <data name="Talen" xml:space="preserve">
-    <value>Langues</value>
+  <data name="TitleHome" xml:space="preserve">
+    <value>VOUS CRÉER VOTRE PROPRE AVENIR !</value>
   </data>
 </root>

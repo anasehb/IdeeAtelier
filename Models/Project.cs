@@ -5,7 +5,7 @@ using System.Security.Permissions;
 
 namespace GroupSpace23.Models
 {
-    public class Group
+    public class Project
     {
         public int Id { get; set; }
 
@@ -36,7 +36,7 @@ namespace GroupSpace23.Models
 
         [ForeignKey("Group")]
         public int GroupId {  get; set; }
-        public Group? Group { get; set; }
+        public Project? Group { get; set; }
 
         [ForeignKey("GroupSpace23User")]
         public string MemberId { get; set; }

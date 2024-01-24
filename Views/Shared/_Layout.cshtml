@@ -26,7 +26,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@_localizer["Start"]</a>
                         </li>
-
+                     
                         <!-- Dropdown voor de "Manage" sectie -->
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -36,9 +36,9 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="manageDropdown">
                                     <a class="dropdown-item text-dark" asp-controller="Groups" asp-action="Index">@_localizer["Projecten"]</a>
-                                    <a class="dropdown-item text-dark" asp-controller="LeveranciersController" asp-action="Index">@_localizer["Leveranciersbheer"]</a>
+                                    <a class="dropdown-item text-dark" asp-controller="Leveranciers" asp-action="Index">@_localizer["Leveranciersbeheer"]</a>
 
-
+                                    
                                     <!-- Voeg hier andere links toe voor je beheerpagina's -->
                                 </div>
                             </li>

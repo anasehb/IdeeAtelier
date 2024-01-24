@@ -51,7 +51,7 @@ namespace GroupSpace23.Controllers
         public IActionResult Create()
         {
             ViewData["AddedById"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["GroupId"] = new SelectList(_context.Groups, "Id", "Id");
+            ViewData["GroupId"] = new SelectList(_context.Projecten, "Id", "Id");
             ViewData["MemberId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
@@ -70,7 +70,7 @@ namespace GroupSpace23.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AddedById"] = new SelectList(_context.Users, "Id", "Id", groupMember.AddedById);
-            ViewData["GroupId"] = new SelectList(_context.Groups, "Id", "Id", groupMember.GroupId);
+            ViewData["GroupId"] = new SelectList(_context.Projecten, "Id", "Id", groupMember.GroupId);
             ViewData["MemberId"] = new SelectList(_context.Users, "Id", "Id", groupMember.MemberId);
             return View(groupMember);
         }
@@ -89,7 +89,7 @@ namespace GroupSpace23.Controllers
                 return NotFound();
             }
             ViewData["AddedById"] = new SelectList(_context.Users, "Id", "Id", groupMember.AddedById);
-            ViewData["GroupId"] = new SelectList(_context.Groups, "Id", "Id", groupMember.GroupId);
+            ViewData["GroupId"] = new SelectList(_context.Projecten, "Id", "Id", groupMember.GroupId);
             ViewData["MemberId"] = new SelectList(_context.Users, "Id", "Id", groupMember.MemberId);
             return View(groupMember);
         }
@@ -127,7 +127,7 @@ namespace GroupSpace23.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AddedById"] = new SelectList(_context.Users, "Id", "Id", groupMember.AddedById);
-            ViewData["GroupId"] = new SelectList(_context.Groups, "Id", "Id", groupMember.GroupId);
+            ViewData["GroupId"] = new SelectList(_context.Projecten, "Id", "Id", groupMember.GroupId);
             ViewData["MemberId"] = new SelectList(_context.Users, "Id", "Id", groupMember.MemberId);
             return View(groupMember);
         }

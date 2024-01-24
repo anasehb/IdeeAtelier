@@ -87,15 +87,21 @@ public class MyDbContext : IdentityDbContext<GroupSpace23User>
             context.SaveChanges();
         }
 
-
-
-        if (!context.Groups.Any())
+        if (!context.Leverancier.Any())
         {
-            context.Groups.Add(new Group { Description = "Dummy", Name = "Dummy", Ended = DateTime.Now });
+            context.Leverancier.Add(new Leverancier { Description = "Leveranciers voor kleren", Name = "Alex Turkey" });
             context.SaveChanges();
         }
-        Group dummyGroup = context.Groups.FirstOrDefault(g => g.Name == "Dummy");
-        List<Group> groups = context.Groups.ToList();
+
+
+
+        if (!context.Projecten.Any())
+        {
+            context.Projecten.Add(new Project { Description = "Dummy", Name = "Dummy", Ended = DateTime.Now });
+            context.SaveChanges();
+        }
+        Project dummyGroup = context.Projecten.FirstOrDefault(g => g.Name == "Dummy");
+        List<Project> groups = context.Projecten.ToList();
         //foreach (Group group in groups)
         //{
 
@@ -147,7 +153,7 @@ public class MyDbContext : IdentityDbContext<GroupSpace23User>
     }
 
 
-    public DbSet<GroupSpace23.Models.Group> Groups{ get; set; }
+    public DbSet<GroupSpace23.Models.Project> Projecten{ get; set; }
 
 
     public DbSet<GroupSpace23.Models.Parameter> Parameters { get; set; }
