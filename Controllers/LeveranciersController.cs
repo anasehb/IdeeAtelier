@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using GroupSpace23.Data;
 using GroupSpace23.Models;
 using Microsoft.AspNetCore.Authorization;
+using GroupSpace23.Areas.Identity.Data;
 
 namespace GroupSpace23.Controllers
 {
@@ -22,11 +23,15 @@ namespace GroupSpace23.Controllers
         }
 
         // GET: Leveranciers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(String Name)
         {
-              return _context.Leverancier != null ? 
-                          View(await _context.Leverancier.ToListAsync()) :
-                          Problem("Entity set 'MyDbContext.Leverancier'  is null.");
+            List<Leverancier> leveranciers = _context.Leverancier
+                                          .Where(u => u.Name != "Dummy" && (u.Name.Contains(Name) || string.IsNullOrEmpty(Name))).ToList();
+
+         
+            ViewData["Name"] = Name;
+           
+            return View(leveranciers);
         }
 
         // GET: Leveranciers/Details/5
@@ -48,6 +53,7 @@ namespace GroupSpace23.Controllers
         }
 
         // GET: Leveranciers/Create
+        [Authorize(Roles = "SystemAdministrator")]
         public IActionResult Create()
         {
             return View();
@@ -58,7 +64,7 @@ namespace GroupSpace23.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description")] Leverancier leverancier)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,email")] Leverancier leverancier)
         {
             if (ModelState.IsValid)
             {
@@ -70,7 +76,7 @@ namespace GroupSpace23.Controllers
         }
 
         // GET: Leveranciers/Edit/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "SystemAdministrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Leverancier == null)
@@ -89,10 +95,10 @@ namespace GroupSpace23.Controllers
         // POST: Leveranciers/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "SystemAdministrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description")] Leverancier leverancier)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,email")] Leverancier leverancier)
         {
             if (id != leverancier.Id)
             {
@@ -123,7 +129,7 @@ namespace GroupSpace23.Controllers
         }
 
         // GET: Leveranciers/Delete/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "SystemAdministrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Leverancier == null)
@@ -142,7 +148,7 @@ namespace GroupSpace23.Controllers
         }
 
         // POST: Leveranciers/Delete/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "SystemAdministrator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

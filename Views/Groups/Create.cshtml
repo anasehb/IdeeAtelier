@@ -1,12 +1,13 @@
 ﻿@model GroupSpace23.Models.Project
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer _localizer
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = @_localizer["Aanmaken"];
 }
 
-<h1>Leg u merk-idee uit ! </h1>
+<h1>@_localizer["Geef de omschrijving van je project"]</h1>
 
-<h4>Idee</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -30,16 +31,18 @@
                 <span asp-validation-for="Started" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="@_localizer["Aanmaken"]" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">@_localizer["Terug naar overzicht"]</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -138,6 +138,47 @@ namespace GroupSpace23.Migrations
                     b.ToTable("GroupMembers");
                 });
 
+            modelBuilder.Entity("GroupSpace23.Models.InventoryItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsChecked")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OwnerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("InventoryItem");
+                });
+
             modelBuilder.Entity("GroupSpace23.Models.Language", b =>
                 {
                     b.Property<string>("Id")
@@ -172,6 +213,10 @@ namespace GroupSpace23.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -445,6 +490,25 @@ namespace GroupSpace23.Migrations
                     b.Navigation("Group");
 
                     b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("GroupSpace23.Models.InventoryItem", b =>
+                {
+                    b.HasOne("GroupSpace23.Areas.Identity.Data.GroupSpace23User", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("GroupSpace23.Models.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Owner");
+
+                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("GroupSpace23.Models.Message", b =>

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Abonnementen" xml:space="preserve">
+    <value>Abonnements</value>
+  </data>
   <data name="Boodschappen" xml:space="preserve">
     <value>Messages</value>
   </data>
@@ -129,11 +132,26 @@
   <data name="Groepen" xml:space="preserve">
     <value>Groups</value>
   </data>
-  <data name="Leveranciersbeheer" xml:space="preserve">
-    <value>Supplier management</value>
+  <data name="Inventaris" xml:space="preserve">
+    <value>Inventory</value>
+  </data>
+  <data name="Leveranciers" xml:space="preserve">
+    <value>Suppliers</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>Manage</value>
   </data>
   <data name="Parameters" xml:space="preserve">
     <value>Parameters</value>
+  </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="Projecten" xml:space="preserve">
+    <value>Projects</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Home</value>

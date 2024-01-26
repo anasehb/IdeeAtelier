@@ -1,38 +1,40 @@
 ﻿@model IEnumerable<GroupSpace23.Models.AbonnementModel>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer _localizer
 
 @{
     ViewData["Title"] = "Abonnementen";
 }
 
-<h1>Abonnementen</h1>
+<h1>@_localizer["Abonnementen"]</h1>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Soort abonnement</th>
+            <th> @Html.DisplayNameFor(model => model.Abonnement)</th>
             <th> @Html.DisplayNameFor(model => model.Prijs)</th>
-            <th>Details</th>
+            <th> @Html.DisplayNameFor(model => model.Details)</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>Standaard Abonnement</td>
-            <td>€30 per jaar</td>
-            <td>Leveranciers informatie</td>
+            <td>@_localizer["Standaard Abonnement"]</td>
+            <td>@_localizer["€30 per jaar"]</td>
+            <td>@_localizer["Leveranciers informatie"]</td>
         </tr>
         <tr>
-            <td>Premium Abonnement</td>
-            <td>€199 per jaar</td>
-            <td>1x per maand coaching</td>
+            <td>@_localizer["Premium Abonnement"]</td>
+            <td>@_localizer["€199 per jaar"]</td>
+            <td>@_localizer["1x per maand coaching"]</td>
         </tr>
         <tr>
-            <td>Deluxe Abonnement</td>
-            <td>€499 per jaar</td>
-            <td>Op maat gemaakte website, relaties en onderhandelingen met leveranciers</td>
+            <td>@_localizer["Deluxe Abonnement"]</td>
+            <td>@_localizer["€499 per jaar"]</td>
+            <td>@_localizer["Op maat gemaakte website, relaties en onderhandelingen met leveranciers"]</td>
         </tr>
     </tbody>
 </table>
 
 <div>
-    <a asp-action="Create">Nieuw abonnement toevoegen</a>
+    <a asp-action="Create">@_localizer["Nieuw abonnement toevoegen"]</a>
 </div>

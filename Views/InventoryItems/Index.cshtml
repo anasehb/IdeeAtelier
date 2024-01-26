@@ -1,0 +1,61 @@
+﻿@model IEnumerable<GroupSpace23.Models.InventoryItem>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer _localizer
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@_localizer["Inventaris"]</h1>
+
+<p>
+    <a asp-action="Create">@_localizer["Aanmaken"]</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsChecked)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <input type="checkbox" asp-for="@item.IsChecked" />                
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@_localizer["Wijzigen"]</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">@_localizer["Details"]</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">@_localizer["Verwijderen"]</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,10 +1,12 @@
 ﻿@model GroupSpace23.Models.AbonnementModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer _localizer
 
 @{
-    ViewData["Title"] = "Nieuw abonnement toevoegen";
+    ViewData["Title"] = _localizer["Nieuw abonnement toevoegen"];
 }
 
-<h1>Nieuw abonnement toevoegen</h1>
+<h1>@ViewData["Title"]</h1>
 
 <hr />
 <div class="row">
@@ -14,23 +16,23 @@
             <div class="form-group">
                 <label asp-for="Abonnement" class="control-label"></label>
                 <select asp-for="Abonnement" class="form-control">
-                    <option value="">Kies een abonnement</option>
-                    <option value="Standaard Abonnement">Standaard Abonnement</option>
-                    <option value="Premium Abonnement">Premium Abonnement</option>
-                    <option value="Deluxe Abonnement">Deluxe Abonnement</option>
+                    <option value="">@_localizer["Kies een abonnement"]</option>
+                    <option value="Standaard Abonnement">@_localizer["Standaard Abonnement"]</option>
+                    <option value="Premium Abonnement">@_localizer["Premium Abonnement"]</option>
+                    <option value="Deluxe Abonnement">@_localizer["Deluxe Abonnement"]</option>
                 </select>
                 <span asp-validation-for="Abonnement" class="text-danger"></span>
             </div>
-            <!-- Andere velden voor prijs, details, etc. -->
+           
             <div class="form-group">
-                <input type="submit" value="Bestellen" class="btn btn-primary" />
+                <input type="submit" value="@_localizer["Bestellen"]" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Terug naar overzicht</a>
+    <a asp-action="Index">@_localizer["Terug naar overzicht"]</a>
 </div>
 
 @section Scripts {

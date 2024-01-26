@@ -8,10 +8,10 @@ namespace GroupSpace23.Models
     public class Project
     {
         public int Id { get; set; }
-
+        [Required(ErrorMessage = "Deze veld is verplicht")]
         [Display (Name="Naam")]
         public string Name { get; set; }
-
+        [Required(ErrorMessage = "Deze veld is verplicht")]
         [Display(Name = "Omschrijving")]
         public string Description { get; set; }
 
@@ -20,11 +20,11 @@ namespace GroupSpace23.Models
 
         public GroupSpace23User? StartedBy { get; set; }
 
-        [Display(Name = "Groep aangemaakt")]
+        [Display(Name = "Concept aangemaakt")]
         [DataType(DataType.Date)]
         public DateTime Started { get; set; } = DateTime.Now;
 
-        [Display(Name = "Groep gestopt")]
+        [Display(Name = "Concept gestopt")]
         [DataType(DataType.Date)]
         public DateTime Ended { get; set; } = DateTime.MaxValue;
     }

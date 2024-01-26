@@ -1,14 +1,18 @@
 ﻿@model IEnumerable<GroupSpace23.Models.Leverancier>
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer _localizer
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>@_localizer["Leveranciers"]</h1>
+ @if (User.IsInRole("SystemAdministrator"))
+{
+    <p>
+                <a asp-action="Create">@_localizer["Aanmaken"]</a>
+    </p>
+}
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -20,26 +24,40 @@
             </th>
             <th></th>
         </tr>
+           <tr>
+            <form asp-action="Index" asp-controller=@_localizer["Leveranciers"] method="get">
+                <th>
+                    <input type="text" name="Name" class="form-control" value=@ViewData["Name"] onchange="$(this.form).submit();"/>
+                </th>
+                </th>
+                <th> </th>
+                <th></th>
+            </form>
+        </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
+                <tr>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
                     @if (User.IsInRole("SystemAdministrator"))
-                    {
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    { 
+                     
+                            <a asp-action="Edit" asp-route-id="@item.Id">@_localizer["Wijzigen"]</a>
+                   
+                            <a asp-action="Delete" asp-route-id="@item.Id">@_localizer["Verwijderen"]</a>
+                        
                     }
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-               
-            </td>
-        </tr>
-}
+                  
+                        <a asp-action="Details" asp-route-id="@item.Id">@_localizer["Details"]</a>
+                </td>
+                </tr>
+        }
     </tbody>
 </table>
+

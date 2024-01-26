@@ -36,11 +36,14 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="manageDropdown">
                                     <a class="dropdown-item text-dark" asp-controller="Groups" asp-action="Index">@_localizer["Projecten"]</a>
-                                    <a class="dropdown-item text-dark" asp-controller="Leveranciers" asp-action="Index">@_localizer["Leveranciersbeheer"]</a>
-
+                                    <a class="dropdown-item text-dark" asp-controller="Leveranciers" asp-action="Index">@_localizer["Leveranciers"]</a>
+                                    <a class="dropdown-item text-dark" asp-controller="Inventoryitems" asp-action="Index">@_localizer["Inventaris"]</a>
                                     
                                     <!-- Voeg hier andere links toe voor je beheerpagina's -->
                                 </div>
+                            </li>
+                            <li class="nav-item">
+                                 <a class="nav-link text-dark" asp-area="" asp-controller="Abonnementen" asp-action="Index">@_localizer["Abonnementen"]</a>
                             </li>
                         }
                         <!-- Einde dropdown voor de "Manage" sectie -->
@@ -71,14 +74,13 @@
                             </li>
                         }
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">@_localizer["Privacy"]</a>
 
                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link text-dark" asp-area="" asp-controller="Abonnementen" asp-action="Index">@_localizer["Abonnementen"]</a>
-                        </li>
+
                        
                     </ul>
+
                     <partial name="_LoginPartial" />
                     <partial name="_LanguagePartial"/>
                 </div>

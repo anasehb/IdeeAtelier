@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using GroupSpace23.Data;
 using GroupSpace23.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using GroupSpace23.Areas.Identity.Data;
 
 namespace GroupSpace23.Controllers
 {
@@ -15,19 +17,40 @@ namespace GroupSpace23.Controllers
     public class GroupsController : Controller
     {
         private readonly MyDbContext _context;
+        private readonly UserManager<GroupSpace23User> _userManager;
 
-        public GroupsController(MyDbContext context)
+        public GroupsController(MyDbContext context, UserManager<GroupSpace23User> userManager)
         {
+
             _context = context;
+            _userManager = userManager;
         }
 
-        [AllowAnonymous]
         // GET: Groups
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string Name)
         {
-              return _context.Projecten != null ? 
-                          View(await _context.Projecten.Where(g=>g.Ended > DateTime.Now).ToListAsync()) :
-                          Problem("Entity set 'GroupSpace23Context.Group'  is null.");
+            var currentUser = await _userManager.GetUserAsync(User);
+
+            List<Project> groups = new List<Project>();
+
+            if (User.IsInRole("SystemAdministrator"))
+            {
+                // Als de gebruiker een systeembeheerder is, alle projecten weergeven
+                groups = _context.Projecten
+                    .Where(u => u.Name != "Dummy" && (u.Name.Contains(Name) || string.IsNullOrEmpty(Name)))
+                    .ToList();
+            }
+            else
+            {
+                // Als de gebruiker geen systeembeheerder is, alleen zijn eigen projecten weergeven
+                groups = _context.Projecten
+                    .Where(u => u.Name != "Dummy" && u.StartedById == currentUser.Id && (u.Name.Contains(Name) || string.IsNullOrEmpty(Name)))
+                    .ToList();
+            }
+
+            ViewData["Name"] = Name;
+
+            return View(groups);
         }
 
         // GET: Groups/Details/5
@@ -39,6 +62,7 @@ namespace GroupSpace23.Controllers
             }
 
             var @group = await _context.Projecten
+                .Include(m => m.StartedBy)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (@group == null)
             {
@@ -108,7 +132,7 @@ namespace GroupSpace23.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!GroupExists(@group.Id))
+                    if (!ProjectExists(@group.Id))
                     {
                         return NotFound();
                     }
@@ -130,14 +154,14 @@ namespace GroupSpace23.Controllers
                 return NotFound();
             }
 
-            var @group = await _context.Projecten
+            var Project = await _context.Projecten
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (@group == null)
+            if (Project == null)
             {
                 return NotFound();
             }
 
-            return View(@group);
+            return View(Project);
         }
 
         // POST: Groups/Delete/5
@@ -145,24 +169,23 @@ namespace GroupSpace23.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Projecten == null)
+            if (_context.InventoryItem == null)
             {
-                return Problem("Entity set 'GroupSpace23Context.Group'  is null.");
+                return Problem("Entity set 'MyDbContext.Project'  is null.");
             }
-            var @group = await _context.Projecten.FindAsync(id);
-            if (@group != null)
+            var Project = await _context.Projecten.FindAsync(id);
+            if (Project != null)
             {
-                group.Ended = DateTime.Now;
-                _context.Projecten.Update(@group);
+                _context.Projecten.Remove(Project);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool GroupExists(int id)
+        private bool ProjectExists(int id)
         {
-          return (_context.Projecten?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.InventoryItem?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Data;
 using System.Security.Cryptography.Pkcs;
 using GroupSpace23.Migrations;
+using System.Reflection.Emit;
 
 namespace GroupSpace23.Data;
 
@@ -16,6 +17,7 @@ public class MyDbContext : IdentityDbContext<GroupSpace23User>
         : base(options)
     {
     }
+ 
 
 
     public static async Task DataInitializer(MyDbContext context, UserManager<GroupSpace23User> userManager)
@@ -89,7 +91,7 @@ public class MyDbContext : IdentityDbContext<GroupSpace23User>
 
         if (!context.Leverancier.Any())
         {
-            context.Leverancier.Add(new Leverancier { Description = "Leveranciers voor kleren", Name = "Alex Turkey" });
+            context.Leverancier.Add(new Leverancier { Description = "Leveranciers voor kleren", Name = "Alex Turkey" ,email = "AlexFromTurkey@gmail.com"});
             context.SaveChanges();
         }
 
@@ -120,12 +122,25 @@ public class MyDbContext : IdentityDbContext<GroupSpace23User>
         }
     }
 
-    protected override void OnModelCreating(ModelBuilder builder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(builder);
         // Customize the ASP.NET Identity model and override the defaults if needed.
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
+        base.OnModelCreating(modelBuilder);
+
+        //modelBuilder.Entity<InventoryItem>()
+        //    .HasOne(item => item.Owner)
+        //    .WithMany()
+        //    .HasForeignKey(item => item.OwnerId)
+        //    .OnDelete(DeleteBehavior.NoAction); // or .OnDelete(DeleteBehavior.Restrict) if you prefer
+
+        //modelBuilder.Entity<InventoryItem>()
+        //    .HasOne(item => item.Project)
+        //    .WithMany()
+        //    .HasForeignKey(item => item.ProjectId)
+        //    .OnDelete(DeleteBehavior.NoAction); // or .OnDelete(DeleteBehavior.Restrict) if you prefer
+
     }
 
     static void AddParameters(MyDbContext context, GroupSpace23User user)
@@ -172,7 +187,10 @@ public class MyDbContext : IdentityDbContext<GroupSpace23User>
 
 
     public DbSet<GroupSpace23.Models.Leverancier> Leverancier { get; set; } = default!;
-    
+
+
+    public DbSet<GroupSpace23.Models.InventoryItem> InventoryItem { get; set; } = default!;
+
 
 }
 

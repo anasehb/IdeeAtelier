@@ -1,14 +1,17 @@
 ﻿@model IEnumerable<GroupSpace23.Models.Project>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer _localizer
 
 @{
     ViewData["Title"] = "Manage";
 }
 
-
-<h1>Manage</h1>
+<div class>
+    <h1>@_localizer["baba"]</h1>
+</div>
 
 <p>
-    <a asp-action="Create">Nieuw Project</a>
+    <a asp-action="Create">@_localizer["NewProject"]</a>
 </p>
 <table class="table">
     <thead>
@@ -27,28 +30,39 @@
             </th>
             <th></th>
         </tr>
+        <tr>
+            <form asp-action="Index" asp-controller="Groups" method="get">
+                <th>
+                    <input type="text" name="Name" class="form-control" value=@ViewData["Name"] onchange="$(this.form).submit();"/>
+                </th>
+                <th> </th>
+                <th></th>
+            </form>
+        </tr>
+
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Started)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ended)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Wijzigen</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Tonen</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Verwijderen</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+                <tr>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.Started)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.Ended)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">@_localizer["Edit"]</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">@_localizer["Show"]</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">@_localizer["Delete"]</a>
+                    </td>
+                </tr>
+        }
     </tbody>
 </table>

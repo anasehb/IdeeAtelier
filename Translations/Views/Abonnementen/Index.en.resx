@@ -117,16 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Groep aangemaakt" xml:space="preserve">
-    <value>Groep aangemaakt</value>
+  <data name="1x per maand coaching" xml:space="preserve">
+    <value>Coaching once a month</value>
   </data>
-  <data name="Groep gestopt" xml:space="preserve">
-    <value>Groep gestopt</value>
+  <data name="Abonnementen" xml:space="preserve">
+    <value>Subscriptions</value>
   </data>
-  <data name="Naam" xml:space="preserve">
-    <value>Naam</value>
+  <data name="Deluxe Abonnement" xml:space="preserve">
+    <value>Deluxe Subscription</value>
   </data>
-  <data name="Omschrijving" xml:space="preserve">
-    <value>Omschrijving</value>
+  <data name="Leveranciers informatie" xml:space="preserve">
+    <value>Suppliers information</value>
+  </data>
+  <data name="Nieuw abonnement toevoegen" xml:space="preserve">
+    <value>Add new subscription</value>
+  </data>
+  <data name="Op maat gemaakte website, relaties en onderhandelingen met leveranciers" xml:space="preserve">
+    <value>Customized website, relationships and negotiations with suppliers</value>
+  </data>
+  <data name="Standaard Abonnement" xml:space="preserve">
+    <value>Standard Subscription</value>
+  </data>
+  <data name="€199 per jaar" xml:space="preserve">
+    <value>€199 per year</value>
+  </data>
+  <data name="€30 per jaar" xml:space="preserve">
+    <value>€30 per year</value>
+  </data>
+  <data name="€499 per jaar" xml:space="preserve">
+    <value>€499 per year</value>
   </data>
 </root>

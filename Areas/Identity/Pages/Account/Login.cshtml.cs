@@ -119,7 +119,7 @@ namespace GroupSpace23.Areas.Identity.Pages.Account
             /// 
 
             [Required]
-
+            
             [Display(Name = "Gebruiker")]
 
             public string UserName { get; set; }
