@@ -25,7 +25,7 @@ namespace GroupSpace23.Models
         [Display(Name = "Prijs")]
         public decimal Price { get; set; }
         
-        [Display(Name = "Geckocht")]
+        [Display(Name = "Gekocht")]
         public bool IsChecked { get; set; }
 
         public string OwnerId { get; set; }

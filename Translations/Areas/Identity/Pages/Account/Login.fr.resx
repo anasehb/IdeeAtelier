@@ -117,19 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Aanmaken" xml:space="preserve">
-    <value>Create</value>
+  <data name="Gebruikersnaam" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
   </data>
-  <data name="Details" xml:space="preserve">
-    <value>Details</value>
+  <data name="Log in" xml:space="preserve">
+    <value>Se connecter</value>
   </data>
-  <data name="Invetaris" xml:space="preserve">
-    <value>Inventory</value>
+  <data name="Meld je als gebruiker aan." xml:space="preserve">
+    <value>Connectez-vous en tant qu'utilisateur.</value>
   </data>
-  <data name="Verwijderen" xml:space="preserve">
-    <value>Delete</value>
+  <data name="Onthoud me ?" xml:space="preserve">
+    <value>Se souvenir de moi ?</value>
   </data>
-  <data name="Wijzigen" xml:space="preserve">
-    <value>Edit</value>
+  <data name="Password" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="Registreren als nieuwe gebruiker" xml:space="preserve">
+    <value>Inscrivez-vous en tant que nouvel utilisateur</value>
+  </data>
+  <data name="Wachtwoord vergeten ?" xml:space="preserve">
+    <value>Mot de passe oublier ?</value>
   </data>
 </root>

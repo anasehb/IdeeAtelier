@@ -117,49 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Abonnementen" xml:space="preserve">
-    <value>Abonnementen</value>
-  </data>
-  <data name="Boodschappen" xml:space="preserve">
-    <value>Boodschappen</value>
-  </data>
   <data name="Confidencialiteit" xml:space="preserve">
-    <value>Confidencialiteit</value>
-  </data>
-  <data name="Gebruikers" xml:space="preserve">
-    <value>Gebruikers</value>
-  </data>
-  <data name="Gebruikersbeheer" xml:space="preserve">
-    <value>Gebruikersbeheer</value>
-  </data>
-  <data name="Groepen" xml:space="preserve">
-    <value>Groepen</value>
-  </data>
-  <data name="Inventaris" xml:space="preserve">
-    <value>Inventaris</value>
-  </data>
-  <data name="Leveranciers" xml:space="preserve">
-    <value>Leveranciers</value>
-  </data>
-  <data name="Login" xml:space="preserve">
-    <value>Login</value>
-  </data>
-  <data name="Manage" xml:space="preserve">
-    <value>Beheer</value>
-  </data>
-  <data name="Parameters" xml:space="preserve">
-    <value>Parameters</value>
-  </data>
-  <data name="Projecten" xml:space="preserve">
-    <value>Projecten</value>
-  </data>
-  <data name="Start" xml:space="preserve">
-    <value>Start</value>
-  </data>
-  <data name="Systeem" xml:space="preserve">
-    <value>Systeem</value>
-  </data>
-  <data name="Talen" xml:space="preserve">
-    <value>Talen</value>
+    <value>Privacy Policy</value>
   </data>
 </root>

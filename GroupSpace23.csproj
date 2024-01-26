@@ -28,4 +28,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Translations\Views\Languages\" />
+    <Folder Include="Translations\Views\Users\" />
+  </ItemGroup>
+
 </Project>

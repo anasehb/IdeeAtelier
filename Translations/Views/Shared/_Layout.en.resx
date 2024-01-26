@@ -123,7 +123,10 @@
   <data name="Boodschappen" xml:space="preserve">
     <value>Messages</value>
   </data>
-  <data name="Gebruiker" xml:space="preserve">
+  <data name="Confidencialiteit" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="Gebruikers" xml:space="preserve">
     <value>Users</value>
   </data>
   <data name="Gebruikersbeheer" xml:space="preserve">
@@ -146,9 +149,6 @@
   </data>
   <data name="Parameters" xml:space="preserve">
     <value>Parameters</value>
-  </data>
-  <data name="Privacy" xml:space="preserve">
-    <value>Privacy</value>
   </data>
   <data name="Projecten" xml:space="preserve">
     <value>Projects</value>
